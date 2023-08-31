@@ -1,79 +1,92 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# REACTNative DWWM CEPPIC/CCI 2023
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Creation d'un projet de boutique en ligne Préalablement réalisé sous ReactJS. Pour des raisons matériel ce projet sera excusivement destiné aux supports Android.
 
-## Step 1: Start the Metro Server
+La version de REACTNative utilisée pour le projet est 0.72 (au 31/08/23). L'environnement de developpement sera Windows et l'IDE VSCode. Les versions ultérieurs demanderont certainement des ajustements (N° de version, variables d'environnement, etc..). Ne soyez donc pas surpris et adaptez.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Installation
+
+- NodeJS
+
+    Pour réaliser ce projet nous aurons besoin en priorité de l'ecosystème NodeJS et de sont gestionnaire de Paquet NPM.
+    Rendez-vous à l'adresse suivante :
+
+    [https://nodejs.org/fr/download](https://nodejs.org/fr/download)
+
+    Installez la dernière version stable sans l'option cholatey.
+
+- Android Studio
+
+    Installez ensuite la dernière version d'Android Studio :
+
+    [https://developer.android.com/studio](https://developer.android.com/studio)
+
+    Acceptez toutes les licences demandées lors de l'installation puis lancez-le.
+    A l'ouverture de la fenêtre "Welcom to Android Studio" ouvrez le menu "More Actions" et selectionnez "SDK Manager". Ce dernier vous permettra d'installer la (ou les) version d'Android correspondante. Acceptez aussi la licence de la version installée.
+    Pour la prochaine étape retournez sur la fenetre d'ouverture et selectionnez cette fois dans le menu More actions l'option "Virtual device Manager". Supprimer l'émulateur par défaut et créez un nouveau correspondant à la version d'Android précédement installée à partir de l'appareil de votre choix.
+
+- Java JDK (au 31/08/23)
+
+    Installez la version 11.0.19 du JDK Java que vous pourrez trouvre à l'adresse suivante : 
+
+    [jdk-11.0.19_windows-x64_bin.exe](https://www.oracle.com/fr/java/technologies/javase/jdk11-archive-downloads.html)
+
+- REACT Native
+
+    Ouvrez un terminal à partir de VSCode (Ctrl+ù) et installez create react native:
+
+    ```npm i -g create-react-native-app```
+
+    
+
+    
+## Environment Variables
+
+Pour tester ce projet et le compiler vous aurez besoin d'éditer les variables d'environnement du Sytème (ici windows 11). Pour cela : 
+- Faites un click droit sur votre menu demarer.
+- Selectionnez "Système".
+- Ouvrez "Parametres avancés du systeme".
+- Cliquez sur "Variables d'environnement..."
+- Dans la fenetre "Variables Systeme" cliquez sur "Nouvelle..."
+- La première devra avoir pour nom "ANDROID_HOME" et pour valeur "C:\Users\votre_nom_d_utilisateur\AppData\Local\Android\Sdk".
+- La seconde "JAVA_HOME" et "C:\Program Files\Java\jdk-11"
+- Enfin vous devrez ajouter un nouvelle entrée à la variable Path : "C:\Users\votre_nom_d_utilisateur\AppData\Local\Android\Sdk\platform-tools"
+
+
+
+## New Project
+
+Pour créer un nouveau projet (ne créez pas de nouveau dossier manuellement!) :
+
+    npx react-native@latest init nom_de_votre_projet
+
+Pour l'ouvrir dans votre virtual device (Android) :
+
+
+    cd nom_de_votre_projet
+    npm run android
+
+Vous pouvez maintenant éditer le fichier app.tsx, créer de nouveaux components, etc.
+## Deployment
+
+Pour installer le projet du repository :
+
+- Télechargez l'archive.
+- Restaurer le node_module à partir du terminal :
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+  npm update
 ```
 
-## Step 2: Start your Application
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Documentations
 
-### For Android
+[https://reactnative.dev/](https://reactnative.dev/)
 
-```bash
-# using npm
-npm run android
+[https://reactnativepaper.com/](https://reactnativepaper.com/)
 
-# OR using Yarn
-yarn android
-```
+[https://docs.swmansion.com/react-native-reanimated/](https://docs.swmansion.com/react-native-reanimated/)
 
-### For iOS
 
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
