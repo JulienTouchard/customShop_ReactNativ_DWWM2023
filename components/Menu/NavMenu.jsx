@@ -4,7 +4,9 @@ import { StyleSheet, View, Image } from 'react-native';
 import { Button, Menu, Divider, PaperProvider } from 'react-native-paper';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons/';
+import { MenuContext } from '../../MenuContext';
 const NavMenu = () => {
+  const menuContext = React.useContext(MenuContext);
   const [visible, setVisible] = React.useState(false);
 
   const openMenu = () => setVisible(true);
@@ -20,16 +22,21 @@ const NavMenu = () => {
       <View
         style={stylesCSS.backgroundMenu}>
 
-        <Image source={require('../../assets/img/logo.jpg')} 
-        style={{width:50,height:50}}
+        <Image source={require('../../assets/img/logo.jpg')}
+          style={{ width: 50, height: 50 }}
         />
         <Menu
           style={stylesCSS.subMenu}
           visible={visible}
           onDismiss={closeMenu}
-          anchor={<Button onPress={openMenu}>Show menu</Button>}>
-          <Menu.Item onPress={() => { }} title="Panier" />
-          <Menu.Item onPress={() => { }} title="Contact" />
+          anchor={<Button 
+          mode="outlined"
+          textColor='#fff'
+          buttonColor="#ff7369"
+          onPress={openMenu}>Menu</Button>}>
+          <Menu.Item onPress={menuContext.fonctDisplayBoutique} title="Boutique" />
+          <Menu.Item onPress={menuContext.fonctDisplayPanier} title="Panier" />
+          <Menu.Item onPress={menuContext.fonctDisplayContact} title="Contact" />
         </Menu>
       </View>
     </PaperProvider>
@@ -42,7 +49,7 @@ const stylesCSS = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
-    backgroundColor:"#f0f0f0"
+    backgroundColor: "#f0f0f0"
   },
   subMenu:
   {

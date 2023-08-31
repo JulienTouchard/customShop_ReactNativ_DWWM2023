@@ -25,37 +25,15 @@ import { Panier } from './components/Panier/Panier';
 
 function App(): JSX.Element {
 
-
   // declaration des mes states
   const [stateMenu, setStateMenu] = useState(
     {
       "displayPanier": false,
       "displayBoutique": true,
       "displayContact": false,
-      "displayUl": false,
-      "tabMenuNav": [
-        {
-          text: "Magasin",
-          url: "#",
-          isActive: false
-        },
-        {
-          text: "Panier",
-          url: "#",
-          isActive: false
-        },
-        {
-          text: "Contact",
-          url: "#",
-          isActive: false
-        }
-      ],
-      "burgerButton": burgerButton,
       "fonctDisplayPanier": fonctDisplayPanier,
       "fonctDisplayBoutique": fonctDisplayBoutique,
-      "updateOrientation": false,
-
-      /* ajouter les deux fonction display pour Boutique et Contact */
+      "fonctDisplayContact": fonctDisplayContact,
     }
   )
   const [stateArticles, setStateArticles] = useState(
@@ -67,47 +45,31 @@ function App(): JSX.Element {
       "incrementQte": incrementQte
     }
   );
-  // detection mobile
-  function burgerButton(disp: Boolean) {
-    //let displayUlTmp = !stateMenu.displayUl
-    /* if (disp) {
 
-      document.body.style.height = 'auto';
-      document.body.style.overflowY = 'visible';
-
-    } else {
-      document.body.style.height = '100vh';
-      document.body.style.overflowY = 'hidden';
-    }
+  function fonctDisplayPanier() {
     setStateMenu({
       ...stateMenu,
-      "displayUl": !disp
-    }) */
+      "displayPanier": true,
+      "displayBoutique": false,
+      "displayContact": false,
+
+    })
   }
-
-  function fonctDisplayPanier(disp: Boolean) {
-    /* if (disp) {
-      document.body.style.height = 'auto';
-      document.body.style.overflowY = 'visible';
-
-    } else {
-      document.body.style.height = '100vh';
-      document.body.style.overflowY = 'hidden';
-    }
-    setStateMenu({
-      ...stateMenu,
-      "displayUl": disp,
-      "displayPanier": !disp
-    }) */
-
-  }
-  /* creer une fonction pour l'affichage de boutique en fonction de displayBoutique ... */
-  /* creer une fonction pour l'affichage de boutique en fonction de displayContact ... */
   function fonctDisplayBoutique() {
     setStateMenu({
       ...stateMenu,
-      "displayBoutique": !stateMenu.displayBoutique,
-      "displayContact": !stateMenu.displayContact,
+      "displayPanier": false,
+      "displayBoutique": true,
+      "displayContact": false,
+
+    })
+  }
+  function fonctDisplayContact(){
+    setStateMenu({
+      ...stateMenu,
+      "displayPanier": false,
+      "displayBoutique": false,
+      "displayContact": true,
     })
   }
   function decrementQte(id: Number) {
@@ -199,8 +161,8 @@ function App(): JSX.Element {
           >
             <View>
               <NavMenu></NavMenu>
-              <Boutique articles={stateArticles.articles}></Boutique>
-              <Panier></Panier>
+              { stateMenu.displayBoutique ? <Boutique articles={stateArticles.articles}></Boutique> : <></>}
+              { stateMenu.displayPanier ? <Panier></Panier> : <></>}
               <Footer></Footer>
             </View>
           </ScrollView>

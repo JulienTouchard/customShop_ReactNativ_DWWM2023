@@ -9,17 +9,18 @@ function CardArticle(props) {
   return (
     <View style={styles.card}>
       <Card style={styles.innerCard}>
-        <Card.Title style={styles.cardTitle}
+        <Card.Title
           title={props.article.name} />
         <Card.Cover resizeMode='contain' source={props.article.url} />
         <Card.Content>
           <Text variant="bodyMedium">{props.article.description}</Text>
-          <Text variant="bodyMedium">{props.article.price} €</Text>
-          <Text variant="bodyMedium">Produits restants : {props.article.qte}</Text>
+          <Text variant="bodyMedium" style={{textAlign:"center",fontWeight:"900"}}>{props.article.price} €</Text>
+          <Text variant="bodyMedium" style={{textAlign:"right"}}>Produits restants : {props.article.qte}</Text>
         </Card.Content>
         <Card.Actions>
           <Button
-          buttonColor="#a8c2ff"
+          textColor='#fff'
+          buttonColor="#ff7369"
           disabled={isActive}
           onPress={() => {
             boutiqueContext.decrementQte(props.article.id);
@@ -37,9 +38,7 @@ const styles = StyleSheet.create({
     position: "relative",
     zIndex: -1
   },
-  cardTitle: {
-    fontWeight: "900"
-  }
+
 })
 
 export default CardArticle;

@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet } from "react-native"
 import { Button } from "react-native-paper"
 import { BoutiqueContext } from "../../BoutiqueContext";
 import { MenuContext } from "../../MenuContext";
+
 const Panier = () => {
     const boutiqueContext = useContext(BoutiqueContext);
     const menuContext = useContext(MenuContext);
@@ -22,7 +23,7 @@ const Panier = () => {
         <View style={styles.backPanier}>
             <View style={styles.panier}>
                 <View style={styles.innerPanier}>
-                    
+
                     <Text style={styles.h2}>Votre panier</Text>
                     <View style={styles.art}>
                         {
@@ -43,26 +44,35 @@ const Panier = () => {
                                         <View
                                             style={styles.panierEntries}
                                             key={index}>
-                                            <Image source={url} style={styles.panImg}/>
-                                            <Text style={styles.panName}>{name}</Text>
-                                            <Text>{styles.priceu}€/unité</Text>
-                                            <Text>
-                                                <Button style={styles.panbtn}
-                                                    disabled={isActiveplus}
-                                                    onPress={() => {
-                                                        /* depuis le onClick sur ce bouton j'appelle la fonction decrementQte
-                                                        liée à mon stateArticles (et donc mon BoutiqueContext) dans App.js */
-                                                        boutiqueContext.decrementQte(valeur[0])
-                                                    }}
-                                                >+</Button>
-                                                <Text>{qtea}</Text>
-                                                <Button style={styles.panbtn}
-                                                    onPress={() => {
-                                                        boutiqueContext.incrementQte(valeur[0])
-                                                    }}
-                                                >-</Button>
-                                            </Text>
-                                            <Text style={styles.pricet}>{pricet}€</Text>
+                                            <Image source={url} style={styles.panImg} />
+                                            <View style={styles.panText}>
+                                                <Text style={styles.panName}>{name}</Text>
+                                                <Text style={styles.priceu}>{priceu}€/unité</Text>
+                                                <Text>
+                                                    <Button
+                                                        textColor="#000"
+                                                        mode="outlined"
+                                                        disabled={isActiveplus}
+                                                        onPress={() => {
+                                                            /* depuis le onClick sur ce bouton j'appelle la fonction decrementQte
+                                                            liée à mon stateArticles (et donc mon BoutiqueContext) dans App.js */
+                                                            boutiqueContext.decrementQte(valeur[0])
+                                                        }}
+                                                    >+</Button>
+                                                    <View style={styles.txtQtea}>
+                                                        <Text style={styles.qtea}>{qtea}</Text>
+                                                    </View>
+                                                    <Button
+                                                        textColor="#000"
+                                                        mode="outlined"
+                                                        onPress={() => {
+                                                            boutiqueContext.incrementQte(valeur[0])
+                                                        }}
+                                                    >-</Button>
+                                                    
+                                                </Text>
+                                                <Text style={styles.pricet}>{pricet}€</Text>
+                                            </View>
                                         </View>
                                     )
                                 })
@@ -83,25 +93,30 @@ const Panier = () => {
 }
 const styles = StyleSheet.create({
     backPanier: {
-        "backgroundColor": "rgba(0, 0, 0, .4)",
-        "height": "auto",
-        "display": "flex",
+        zIndex:-1,
+        height: "auto",
+        justifyContent: "center",
+        margin: 20,
+        width: "100%"
     },
     panier: {
-        "backgroundColor": "rgb(255, 255, 255)",
-        "padding": 16,
-        "color": "#464646",
-        "borderRadius": 8,
-        justifyContent:"center"
+        backgroundColor: "rgb(255, 255, 255)",
+        padding: 16,
+        color: "#464646",
+        borderRadius: 8,
+        width: "90%",
+    },
+    h2:{
+        fontWeight:"900",
+        fontSize:16,
+        color:"#464646",
+        marginBottom:20
     },
     panierEntries: {
-        "width": "80%",
-        "display": "flex",
-        "alignItems": "center",
-        "justifyContent": "space-between",
-        "borderBottom": "1px red solid",
-        "paddingBottom": 8,
-        "marginBottom": 8,
+        flexDirection: "row",
+        alignItems: "flex-start",
+        paddingBottom: 8,
+        marginBottom: 8,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -112,33 +127,39 @@ const styles = StyleSheet.create({
 
         elevation: 5,
     },
+    panText: {
+        textAlign: "center"
+    },
     panName: {
-        "fontWeight": "900",
-        "color": "red",
-        "width": 165,
+        fontWeight: "900",
+        color: "red",
+        width: 165,
+        marginBottom:15,
     },
     panImg: {
-        "width": 80
+        width: 120,
+        height: 150,
+        resizeMode:'contain'
     },
-    panbtn: {
-        "padding": ".1rem .5rem .1rem .5rem",
-        "margin": 8,
-        "width": 25,
-        "fontWeight": "900",
-        "border": "1px gray solid",
-        "WebkitBoxShadow": "2px 2px 6px -1px rgba(0, 0, 0, 0.45)",
-        "boxShadow": "2px 2px 6px -1px rgba(0, 0, 0, 0.45)",
-        "borderRadius": 8,
+    qtea: {
+        textAlign: "center",
+        color: "#000",
+        margin:10
     },
-
-    totalPrice: {
-        "fontWeight": "900",
-        "textAlign": "right",
-        "width": "80%",
-        "margin": "0 auto"
+    priceu: {
+        textAlign: "center",
+        color: "#000",
     },
     pricet: {
-        "width": "45px",
-    }
+        color: "#000",
+        textAlign: "center",
+        fontWeight:"500"
+    },
+    totalPrice: {
+        fontWeight: "900",
+        textAlign: "right",
+        width: "80%",
+        color:"#464646",
+    },
 })
 export { Panier }
